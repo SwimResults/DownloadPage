@@ -1,5 +1,9 @@
 <?php
 
+    if (!isset($_GET["path"])) {
+        include("no_path.html");
+    }
+
     $path = "/".$_GET["path"];
 
     $filename = substr($path, strrpos($path, "/") + 1);
