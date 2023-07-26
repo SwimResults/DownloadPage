@@ -14,7 +14,7 @@
     if ($API_URL) {
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $API_URL."/files/increment");
+        curl_setopt($ch, CURLOPT_URL, $API_URL."/file/increment");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $path);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3); //timeout in seconds
