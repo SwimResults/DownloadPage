@@ -2,9 +2,38 @@
 
     if (!isset($_GET["path"])) {
         include("no_path.html");
+        die();
     }
 
     $path = "/".$_GET["path"];
+
+
+    // inform meeting service to update download counter
+
+    $API_URL = getenv("SR_MEETING_URL");
+    if ($API_URL) {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $API_URL."/files/increment");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $path);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 3); //timeout in seconds
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'User-Agent: SwimResults',
+            'Content-Type: plain/text'
+        ]);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $content = curl_exec($ch);
+
+        curl_close($ch);
+    }
+
+
+
+
 
     $filename = substr($path, strrpos($path, "/") + 1);
 
