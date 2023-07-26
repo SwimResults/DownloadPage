@@ -21,7 +21,7 @@
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'User-Agent: SwimResults',
-            'Content-Type: plain/text'
+            'Content-Type: text/plain'
         ]);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
