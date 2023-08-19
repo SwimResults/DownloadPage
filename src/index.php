@@ -50,7 +50,15 @@
 
         header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
         header("Cache-Control: public"); // needed for internet explorer
-        header("Content-Type: application/octet-stream");
+
+        function getContentType($filename) {
+            $finfo = new finfo(FILEINFO_MIME);
+            return $finfo->file($filename);
+        }
+
+        header("Content-Type: " . getContentType($filename));
+        
+        //header("Content-Type: application/octet-stream");
         header("Content-Transfer-Encoding: Binary");
         header("Content-Length:".filesize($attachment_location));
         //header("Content-Disposition: attachment; filename=".$filename); forces browser to download
