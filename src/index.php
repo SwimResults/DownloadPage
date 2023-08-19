@@ -56,7 +56,7 @@
             return $finfo->file($filename);
         }
 
-        header("Content-Type: " . getContentType($filename));
+        header("Content-Type: " . getContentType($attachment_location));
         
         //header("Content-Type: application/octet-stream");
         header("Content-Transfer-Encoding: Binary");
