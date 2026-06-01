@@ -11,6 +11,7 @@
     // inform meeting service to update download counter
 
     $API_URL = getenv("SR_MEETING_URL");
+    $API_KEY = getenv("SR_SERVICE_KEY");
     if ($API_URL) {
         $ch = curl_init();
 
@@ -21,7 +22,8 @@
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'User-Agent: SwimResults',
-            'Content-Type: text/plain'
+            'Content-Type: text/plain',
+            'X-Swimresults-Service: '.$API_KEY
         ]);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
