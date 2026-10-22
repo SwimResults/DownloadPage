@@ -1,4 +1,6 @@
 <?php
+    error_reporting(E_ALL & ~E_WARNING & ~E_DEPRECATED & ~E_NOTICE);
+    ini_set('display_errors', '0');
 
     if (!isset($_GET["path"])) {
         include("no_path.html");
@@ -54,8 +56,6 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $content = curl_exec($ch);
-
-        curl_close($ch);
     }
 
     header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
